@@ -83,7 +83,7 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="<%= request.getContextPath() %>/"><img height="25" src="<%= request.getContextPath() %>/image/dspace-logo-only.png" alt="DSpace logo" /></a>
+         <a class="navbar-brand" href="<%= request.getContextPath() %>/"><img height="125" src="<%= request.getContextPath() %>/image/LOGO_maior.png" alt="DSpace logo"/></a>
        </div>
        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
          <ul class="nav navbar-nav">
@@ -112,7 +112,7 @@
 
             </ul>
           </li>
-          <li class="<%= ( currentPage.endsWith( "/help" ) ? "active" : "" ) %>"><dspace:popup page="<%= LocaleSupport.getLocalizedMessage(pageContext, \"help.index\") %>"><fmt:message key="jsp.layout.navbar-default.help"/></dspace:popup></li>
+          <%-- <li class="<%= ( currentPage.endsWith( "/help" ) ? "active" : "" ) %>"><dspace:popup page="<%= LocaleSupport.getLocalizedMessage(pageContext, \"help.index\") %>"><fmt:message key="jsp.layout.navbar-default.help"/></dspace:popup></li>
           <li><a target="_blank" href="<%= request.getContextPath() %>/feedback"><fmt:message key="jsp.layout.footer-default.feedback"/></a></li>		
           <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="jsp.layout.navbar-default.documents"/> <b class="caret"></b></a>
@@ -120,10 +120,90 @@
              	<li><a target="_blank" href="<%= request.getContextPath() %>/doc1.docx">Documento1</a></li>	
              	<li><a target="_blank" href="<%= request.getContextPath() %>/doc2.docx">Documento2</a></li>
              </ul>
-          </li>
+          </li> --%>
+        
+<%--
+        <% if (supportedLocales != null && supportedLocales.length > 1)
+             {
+         %>
+              <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="jsp.layout.navbar-default.language"/><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+         <%
+            for (int i = supportedLocales.length-1; i >= 0; i--)
+             {
+         %>
+              <li>
+                <a onclick="javascript:document.repost.locale.value='<%=supportedLocales[i].toString()%>';
+                          document.repost.submit();" href="<%= request.getContextPath() %>?locale=<%=supportedLocales[i].toString()%>">
+                 <%= supportedLocales[i].getDisplayLanguage(supportedLocales[i])%>
+               </a>
+              </li>
+         <%
+             }
+         %>
+             </ul>
+            </li>
+         <%
+           }
+         %>
+--%>
+	<ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+			<div style="padding-top:10px;padding-right:5px;">
+			<a href="?locale=pt_BR"><img alt="Português" title="Português" src="<%= request.getContextPath() %>/image/brazil.png"></a>
+		</div>
+		</li>
+		<li class="dropdown">
+		  <div style="padding-top:10px;padding-right:5px;">
+		    <a href="?locale=en"><img alt="English" title="English" src="<%= request.getContextPath() %>/image/usa.png"></a> 
+		  </div>
+		</li>
+		<li class="dropdown">
+		  <div style="padding-top:10px;padding-right:5px;">
+		    <a href="?locale=es"><img alt="Español" title="Español" src="<%= request.getContextPath() %>/image/spain.png"></a>
+		  </div>
+		</li>
+		<li class="dropdown">
+         <%
+    if (user != null)
+    {
+                %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <fmt:message key="jsp.layout.navbar-default.loggedin">
+                      <fmt:param><%= StringUtils.abbreviate(navbarEmail, 20) %></fmt:param>
+                  </fmt:message> <b class="caret"></b></a>
+                <%
+    } else {
+                %>
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <fmt:message key="jsp.layout.navbar-default.sign"/> <b class="caret"></b></a>
+        <% } %>
+             <ul class="dropdown-menu">
+               <li><a href="<%= request.getContextPath() %>/mydspace"><fmt:message key="jsp.layout.navbar-default.users"/></a></li>
+               <li><a href="<%= request.getContextPath() %>/subscribe"><fmt:message key="jsp.layout.navbar-default.receive"/></a></li>
+               <li><a href="<%= request.getContextPath() %>/profile"><fmt:message key="jsp.layout.navbar-default.edit"/></a></li>
+
+                <%
+                  if (isAdmin)
+                  {
+                %>
+                           <li class="divider"></li>
+               <li><a href="<%= request.getContextPath() %>/dspace-admin"><fmt:message key="jsp.administer"/></a></li>
+                <%
+                  }
+                  if (user != null) {
+                %>
+                <li><a href="<%= request.getContextPath() %>/logout"><span class="glyphicon glyphicon-log-out"></span> <fmt:message key="jsp.layout.navbar-default.logout"/></a></li>
+                <% } %>
+             </ul>
+           </li>
+          </ul>
+	</ul>
+
+
+
        </ul>
 
- <% if (supportedLocales != null && supportedLocales.length > 1)
+ <% if (false==true && supportedLocales != null && supportedLocales.length > 1)
      {
  %>
     <div class="nav navbar-nav navbar-right">
@@ -153,7 +233,7 @@
  %>
  
        <div class="nav navbar-nav navbar-right">
-		<ul class="nav navbar-nav navbar-right">
+		<%--<ul class="nav navbar-nav navbar-right">
          <li class="dropdown">
          <%
     if (user != null)
@@ -186,7 +266,7 @@
 		<% } %>
              </ul>
            </li>
-          </ul>
+          </ul> --%>
           
 	<%-- Search Box --%>
 	<form method="get" action="<%= request.getContextPath() %>/simple-search" class="navbar-form navbar-right">

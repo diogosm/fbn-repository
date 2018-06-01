@@ -11,7 +11,7 @@
 ol.breadcrumb li {color: white; font-style: italic;}
 ol.breadcrumb li a {color: white; font-weight: bold; font-style: normal;}
 body.undernavigation {overflow-x: hidden; padding-top: 65px;}
-#content {padding-bottom:60px;}
+#content {padding-bottom:60px;margin-top: 30px;}
 #designedby {padding: 5px;}
 #footer_feedback {padding-top: 10px;}
 input[type="file"] {display: block;height: auto;}
@@ -248,7 +248,9 @@ input.ds-authority-lock.is-unlocked
 {
 	background-image: none;
 	/* border: #7aa97a; */
-	background-color: #008CBA;
+	/* UFAM DIOGO */
+	/*background-color: #008CBA;*/
+	background-color: #0074D9;
     border-color: #008CBA;
 }
 
@@ -530,6 +532,7 @@ body {
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 /** Torna lupa de busca da página inicial maior **/

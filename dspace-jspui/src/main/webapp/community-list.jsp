@@ -40,6 +40,10 @@
 
 <%@ taglib uri="http://www.dspace.org/dspace-tags.tld" prefix="dspace" %>
 
+<link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/tree-view-grid.css" type="text/css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap-treeview.min.css" type="text/css" />
+<script type="text/javascript" src="<%= request.getContextPath() %>/static/js/bootstrap-treeview.min.js" ></script>
+
 <%
     Community[] communities = (Community[]) request.getAttribute("communities");
     Map collectionMap = (Map) request.getAttribute("collections.map");
@@ -120,6 +124,37 @@
         out.println("</div>");
         out.println("</li>");
     }
+
+    void showCommunity2(Community c, JspWriter out, HttpServletRequest request, ItemCounter ic,
+                       Map collectionMap, Map subcommunityMap) throws ItemCountException, IOException, SQLException
+    {
+        boolean showLogos = ConfigurationManager.getBooleanProperty("jspui.community-list.logos", true);
+        out.println( "<li>" );
+        out.println( "<div id=\"portfolio\">" );
+        out.println( "<div class=\"portfolio-item\">" );
+        Bitstream logo = c.getLogo();
+        if (showLogos && logo != null)
+        {
+            out.println("<a class=\"portfolio-link\" href=\"" + request.getContextPath() + "/handle/" + c.getHandle()           + "\">\n" + "<div style=\"min-height: 50px;\" class=\"portfolio-hover\">\n" +
+            "<div class=\"portfolio-hover-content\">\n" +
+            " <i class=\"fa fa-search-plus fa-4x\"></i>\n" + "</div>\n" +
+            " </div>\n" +
+            " <img alt=\"community logo\" src=\"" + request.getContextPath() + "/retrieve/" + logo.getID() + "\"class=\"media-object img-responsive\">\n" +
+            " </a>");
+        }
+        out.println( "<div class=\"portfolio-caption\"><h4><a href=\"" + request.getContextPath() +"/handle/" + c.getHandle() + "\">" + c.getMetadata("name") + "</a>\n" );
+
+        if(ConfigurationManager.getBooleanProperty("webui.strengths.show"))
+        {
+            out.println(" <span class=\"badge\">" + ic.getCount(c) + "</span>");
+        }
+
+        out.println("</h4>\n" + "</div>" );
+
+        out.println("</div>");
+        out.println("</div>");
+        out.println("</li>");
+    }
 %>
 
 <dspace:layout titlekey="jsp.community-list.title">
@@ -152,15 +187,61 @@
 <% if (communities.length != 0)
 {
 %>
-    <ul class="media-list">
+    <%--<ul class="media-list">--%>
+    <div class="row">
+        <div id="container">
+            <ul class="media-list">
 <%
-        for (int i = 0; i < communities.length; i++)
-        {
-            showCommunity(communities[i], out, request, ic, collectionMap, subcommunityMap);
-        }
+                for (int i = 0; i < communities.length; i++)
+                {
+                    //showCommunity(communities[i], out, request, ic, collectionMap, subcommunityMap);
+                    //showCommunity2(communities[i], out, request, ic, collectionMap, subcommunityMap);
+                }
 %>
-    </ul>
+            </ul>
+        </div>
+    </div>
+    <%--</ul>--%>
  
 <% }
 %>
+
+<%
+        //escreve tree-view
+        out.println("<script type=\"text/javascript\">");
+        out.println("$(function(){");
+        out.println("var defaultData = [ ");
+        for (int i = 0; i < communities.length; i++){
+                //if(communities[i].getHandle() == "prefix/5413") continue;
+                if(i>0) out.println(",");
+                if(i==0) out.println("{text: '" + communities[i].getMetadata("name") + "', href: '/handle/" + communities[i].getHandle()  + "', tags:['"+ic.getCount(communities[i])+"'], state: {expanded:true}, nodes:[");
+                else out.println("{text: '" + communities[i].getMetadata("name") + "', href: '/handle/" + communities[i].getHandle()  + "', tags:['"+ic.getCount(communities[i])+"'], state: {expanded:false}, nodes:[");
+
+                Collection[] cols = (Collection[]) collectionMap.get(communities[i].getID());
+                if (cols != null && cols.length > 0)
+                {
+                    for (int j = 0; j < cols.length; j++)
+                    {
+                        if (j>0){
+                        out.println(",");
+                        }
+                        out.println("\t{text: '" + cols[j].getMetadata("name") + "', href: '/handle/" + cols[j].getHandle()  + "', tags:['"+ic.getCount(cols[j])+"']}");
+
+                    }
+                }
+
+                out.println("]}");
+        }
+        out.println("]");
+        //out.println("$(document).ready(function(){");
+        //out.println("$('#treeview10').treeview({color: \"428bca\", enableLinks: true, data: defaultData});});");
+        //out.println("});");
+
+        out.println("$(window).load(function() {$('#treeview10').treeview({                        color: \"#428bca\"                        , enableLinks: true                        , data: defaultData, showTags:true                });    });");
+        out.println("});</script>");
+        //fim escreve tree-view
+%>
+
+<div id="treeview10" class="treeview"></div>
+
 </dspace:layout>

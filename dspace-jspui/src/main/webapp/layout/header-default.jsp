@@ -54,6 +54,8 @@
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/bootstrap.min.css" type="text/css" />
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/bootstrap-theme.min.css" type="text/css" />
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/dspace-theme.css" type="text/css" />
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/thrive.css" type="text/css" />
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/font-awesome.min.css" type="text/css" />
 <%
     if (!"NONE".equals(feedRef))
     {
@@ -121,7 +123,7 @@
 
     <%-- HACK: leftmargin, topmargin: for non-CSS compliant Microsoft IE browser --%>
     <%-- HACK: marginwidth, marginheight: for non-CSS compliant Netscape browser --%>
-    <body class="undernavigation">
+    <body class="undernavigation <fmt:message key="jsp.community-list.title"/>">
 <a class="sr-only" href="#content">Skip navigation</a>
 <header class="navbar navbar-inverse navbar-fixed-top">    
     <%

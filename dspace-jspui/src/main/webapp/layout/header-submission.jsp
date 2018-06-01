@@ -54,6 +54,8 @@
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/bootstrap.min.css" type="text/css" />
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/bootstrap-theme.min.css" type="text/css" />
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/dspace-theme.css" type="text/css" />
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/thrive.css" type="text/css" />
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/font-awesome.min.css" type="text/css" />
 <%
     if (!"NONE".equals(feedRef))
     {

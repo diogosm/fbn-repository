@@ -43,6 +43,8 @@
     Context context = UIUtil.obtainContext(request);
 %>
 
+<script type="text/javascript" src="<%= request.getContextPath() %>/static/js/seleciona.js"></script>
+
 <dspace:layout style="submission" locbar="off"
                navbar="off"
                titlekey="jsp.submit.select-collection.title"
@@ -66,14 +68,45 @@
 					<div class="alert alert-warning"><fmt:message key="jsp.submit.select-collection.no-collection"/></div>
 <%
 		}
-%>            
-            
+%>           
+
+
+        <div class="input-group">
+        <label for="tcollection2" class="input-group-addon">
+                Comunidade
+        </label>
+
+        <select class="form-control" name="collection2" id="tcollection2">
+                <option value="-1"></option>
+                <option value="-2">Administrativo FIC</option>
+                <option value="-3">Curso de Arquivologia</option>
+                <option value="-4">Curso de Biblioteconomia</option>
+                <option value="-5">Curso de Jornalismo</option>
+                <option value="-6">Curso de Relações Públicas</option>
+                <option value="-7">Pesquisa, Extensão e Inovação</option>
+                <option value="-8">Programa de Pós-Graduação em Ciências da Comunicação</option>
+        </select>
+        </div><br/>
+
+        <div class="input-group">
+        <label for="tcollection3" class="input-group-addon">
+                <fmt:message key="jsp.submit.select-collection.collection"/>
+        </label>
+
+        <select class="form-control" name="collection" id="tcollection">
+                <option value="-1"></option>
+        </select>
+
+        </div><br/>
+ 
+<%--            
 					<div class="input-group">
 					<label for="tcollection" class="input-group-addon">
 						<fmt:message key="jsp.submit.select-collection.collection"/>
 					</label>
           <dspace:selectcollection klass="form-control" id="tcollection" collection="-1" name="collection"/>
 					</div><br/>
+--%>
             <%-- Hidden fields needed for SubmissionController servlet to know which step is next--%>
             <%= SubmissionController.getSubmissionParameters(context, request) %>
 

@@ -115,12 +115,6 @@
           String value;
           Metadatum[] values;
           StringBuffer row = new StringBuffer();
-          
-          row.append("<div class=\"row\">");
-          row.append("<span class=\"metadataFieldLabel col-md-4 \">");
-          row.append(inputs[z].getLabel());
-          row.append("</span>");
-          row.append("<span class=\"metadataFieldValue col-md-8\">");
 
           if (inputType.equals("qualdrop_value"))
           {
@@ -130,6 +124,26 @@
           {
              values = item.getMetadata(inputs[z].getSchema(), inputs[z].getElement(), inputs[z].getQualifier(), Item.ANY);
           }
+
+          if (values.length == 0)
+          {
+             continue;
+          }
+
+          row.append("<div class=\"row\">");
+          row.append("<span class=\"metadataFieldLabel col-md-4 \">");
+          row.append(inputs[z].getLabel());
+          row.append("</span>");
+          row.append("<span class=\"metadataFieldValue col-md-8\">");
+
+          /*if (inputType.equals("qualdrop_value"))
+          {
+             values = item.getMetadata(inputs[z].getSchema(), inputs[z].getElement(), Item.ANY, Item.ANY);
+          }
+          else
+          {
+             values = item.getMetadata(inputs[z].getSchema(), inputs[z].getElement(), inputs[z].getQualifier(), Item.ANY);
+          }*/
           if (values.length == 0)
           {
              row.append(LocaleSupport.getLocalizedMessage(pageContext, "jsp.submit.review.no_md"));
@@ -188,7 +202,8 @@
                 {
                    row.append(Utils.addEntities(values[i].value));
                 }
-                                if (isAuthorityControlled)
+                
+                if (isAuthorityControlled)
                 {
                     row.append("<span class=\"ds-authority-confidence cf-")
                        .append(values[i].confidence).append("\">")
