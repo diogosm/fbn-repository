@@ -91,14 +91,14 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 main-content">
 			<div>
 				<%-- <h2 class="ds-div-head page-header first-page-header">About</h2>--%>
-				<h2 class="ds-div-head page-header first-page-header"><fmt:message key="jsp.fbn.sobre"/></h2>
+				<h1 class="ds-div-head page-header first-page-header"><fmt:message key="jsp.fbn.sobre"/></h1>
 				<div id="file_news_div_news" class="ds-static-div primary">
-					<p>
+					<p style="font-size: 18px;">
 					O<strong> repositório institucional da Faculdade Boas Novas</strong> foi criado em 2018 e almeja armazenar, preservar, disseminar e permitir o acesso aberto aos documentos acadêmicos, científicos e técnicos produzidos por pesquisadores, docentes e discentes da Boas Novas.</p>
 				</div>
 				<div class="ds-div-head page-header first-page-header" style="margin: 1px 0 1px;"></div>
 				
-				<h2 class="ds-div-head page-header first-page-header"><fmt:message key="jsp.community-list.title"/></h2>
+				<h1 class="ds-div-head page-header first-page-header"><fmt:message key="jsp.community-list.title"/></h1>
 				<%-- 
 				<h2 class="ds-div-head page-header">Autoarquivamento de Dissertações e Teses</h2>
 				<div id="file_news_div_news" class="ds-static-div primary">

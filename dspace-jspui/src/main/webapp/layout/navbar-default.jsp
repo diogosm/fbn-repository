@@ -114,13 +114,17 @@
           </li>
           <%-- <li class="<%= ( currentPage.endsWith( "/help" ) ? "active" : "" ) %>"><dspace:popup page="<%= LocaleSupport.getLocalizedMessage(pageContext, \"help.index\") %>"><fmt:message key="jsp.layout.navbar-default.help"/></dspace:popup></li>
           <li><a target="_blank" href="<%= request.getContextPath() %>/feedback"><fmt:message key="jsp.layout.footer-default.feedback"/></a></li>		
+--%>
           <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="jsp.layout.navbar-default.documents"/> <b class="caret"></b></a>
              <ul class="dropdown-menu">
-             	<li><a target="_blank" href="<%= request.getContextPath() %>/doc1.docx">Documento1</a></li>	
+             	<li><a target="_blank" href="http://fbnovas.edu.br/site/wp-content/uploads/2019/03/TERMO%20DE%20AUTORIZA%C3%87%C3%83O%20PARA%20PUBLICA%C3%87%C3%83O%20DIGITAL%20FBN.pdf">Termo de Autorização para Publicação Digital</a></li>	
+             	<%--
+		<li><a target="_blank" href="<%= request.getContextPath() %>/doc1.docx">Documento1</a></li>	
              	<li><a target="_blank" href="<%= request.getContextPath() %>/doc2.docx">Documento2</a></li>
+		--%>
              </ul>
-          </li> --%>
+          </li>
         
 <%--
         <% if (supportedLocales != null && supportedLocales.length > 1)

@@ -71,11 +71,11 @@
 %>           
 
 
+<%--
         <div class="input-group">
         <label for="tcollection2" class="input-group-addon">
                 Comunidade
         </label>
-
         <select class="form-control" name="collection2" id="tcollection2">
                 <option value="-1"></option>
                 <option value="-2">Administrativo FIC</option>
@@ -98,15 +98,15 @@
         </select>
 
         </div><br/>
- 
-<%--            
+--%> 
+            
 					<div class="input-group">
 					<label for="tcollection" class="input-group-addon">
 						<fmt:message key="jsp.submit.select-collection.collection"/>
 					</label>
           <dspace:selectcollection klass="form-control" id="tcollection" collection="-1" name="collection"/>
 					</div><br/>
---%>
+
             <%-- Hidden fields needed for SubmissionController servlet to know which step is next--%>
             <%= SubmissionController.getSubmissionParameters(context, request) %>
 
