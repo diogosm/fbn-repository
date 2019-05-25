@@ -1168,6 +1168,7 @@ h1.facets {
 
 #facet_author span.badge {
     background: #34890E;
+    color: white;
 }
 
 #facet_subject ul {
@@ -1188,6 +1189,7 @@ h1.facets {
 
 #facet_subject span.badge {
     background: #BFA526;
+    color: white;
 }
 
 #facet_dateIssued ul{
@@ -1206,6 +1208,7 @@ h1.facets {
 
 #facet_dateIssued span.badge {
     background: #0C87C9;
+    color: white;
 }
 
 #facet_type ul{
@@ -1229,6 +1232,7 @@ h1.facets {
 
 #facet_type span.badge {
     background: #C94B0C;
+    color: white;
 }
 
 #facets .list-group-item {
@@ -1946,7 +1950,7 @@ table th,table td {
 	background: #fafafa;
 	border: 1px solid #e3e5ec;
 	color: #555;
-	font-size: 10px;
+	font-size: 14px;
 	line-height: 14px;
 	padding: 5px;
 	text-align: center;
@@ -5852,4 +5856,12 @@ body.inicial #portfolio .portfolio-item, body.Home #portfolio .portfolio-item, b
 
 input.form-control[type="checkbox"] {
     height: 18px;
+}
+
+.list-group.hideFacets {
+	margin: 0px !important;
+}
+
+#facets .list-group {
+	margin: 0px !important;
 }
